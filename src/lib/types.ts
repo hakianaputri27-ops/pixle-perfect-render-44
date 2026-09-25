@@ -91,7 +91,7 @@ export interface Maintenance {
 export interface Settings {
   currency: string;
   theme: "light" | "dark";
-  activePropertyId?: string;
+  activePropertyId?: string | undefined;
 }
 
 export interface DB {
