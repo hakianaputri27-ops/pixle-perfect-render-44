@@ -5,7 +5,7 @@ export type MaintenanceStatus = "Open" | "In Progress" | "Completed";
 export interface Property {
   id: string;
   name: string;
-  address?: string;
+  address?: string | undefined;
 }
 
 export interface Room {
@@ -14,33 +14,33 @@ export interface Room {
   name: string;
   rent: number;
   status: RoomStatus;
-  tenantId?: string;
-  notes?: string;
+  tenantId?: string | undefined;
+  notes?: string | undefined;
 }
 
 export interface Tenant {
   id: string;
   propertyId: string;
   name: string;
-  phone?: string;
-  roomId?: string;
+  phone?: string | undefined;
+  roomId?: string | undefined;
   rent: number;
-  moveInDate?: string;
-  dueDate?: string;
-  deposit?: number;
-  notes?: string;
+  moveInDate?: string | undefined;
+  dueDate?: string | undefined;
+  deposit?: number | undefined;
+  notes?: string | undefined;
 }
 
 export interface Payment {
   id: string;
   propertyId: string;
-  tenantId?: string;
-  roomId?: string;
+  tenantId?: string | undefined;
+  roomId?: string | undefined;
   amount: number;
   date: string;
   month: string; // YYYY-MM
   status: PaymentStatus;
-  notes?: string;
+  notes?: string | undefined;
 }
 
 export const EXPENSE_CATEGORIES = [
@@ -62,36 +62,36 @@ export interface Expense {
   date: string;
   category: string;
   amount: number;
-  notes?: string;
+  notes?: string | undefined;
 }
 
 export interface Asset {
   id: string;
   propertyId: string;
   name: string;
-  category?: string;
+  category?: string | undefined;
   price: number;
   purchaseDate: string;
   usefulLife: number; // years
-  notes?: string;
+  notes?: string | undefined;
 }
 
 export interface Maintenance {
   id: string;
   propertyId: string;
-  roomId?: string;
+  roomId?: string | undefined;
   problem: string;
   date: string;
-  estimatedCost?: number;
-  actualCost?: number;
+  estimatedCost?: number | undefined;
+  actualCost?: number | undefined;
   status: MaintenanceStatus;
-  notes?: string;
+  notes?: string | undefined;
 }
 
 export interface Settings {
   currency: string;
   theme: "light" | "dark";
-  activePropertyId?: string;
+  activePropertyId?: string | undefined;
 }
 
 export interface DB {

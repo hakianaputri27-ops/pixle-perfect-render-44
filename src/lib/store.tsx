@@ -51,7 +51,7 @@ export const newId = () =>
 interface StoreValue {
   db: DB;
   ready: boolean;
-  activePropertyId?: string;
+  activePropertyId?: string | undefined;
   add: <K extends Coll>(coll: K, item: Omit<DB[K][number], "id">) => DB[K][number];
   update: <K extends Coll>(coll: K, id: string, patch: Partial<DB[K][number]>) => void;
   remove: (coll: Coll, id: string) => void;

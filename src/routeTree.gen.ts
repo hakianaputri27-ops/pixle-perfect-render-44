@@ -10,12 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AsetRouteImport } from './routes/aset'
 import { Route as KamarRouteImport } from './routes/kamar'
 import { Route as KeuanganRouteImport } from './routes/keuangan'
+import { Route as LainnyaRouteImport } from './routes/lainnya'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AsetRoute = AsetRouteImport.update({
+  id: '/aset',
+  path: '/aset',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KamarRoute = KamarRouteImport.update({
@@ -28,35 +35,48 @@ const KeuanganRoute = KeuanganRouteImport.update({
   path: '/keuangan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LainnyaRoute = LainnyaRouteImport.update({
+  id: '/lainnya',
+  path: '/lainnya',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aset': typeof AsetRoute
   '/kamar': typeof KamarRoute
   '/keuangan': typeof KeuanganRoute
+  '/lainnya': typeof LainnyaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aset': typeof AsetRoute
   '/kamar': typeof KamarRoute
   '/keuangan': typeof KeuanganRoute
+  '/lainnya': typeof LainnyaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aset': typeof AsetRoute
   '/kamar': typeof KamarRoute
   '/keuangan': typeof KeuanganRoute
+  '/lainnya': typeof LainnyaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kamar' | '/keuangan'
+  fullPaths: '/' | '/aset' | '/kamar' | '/keuangan' | '/lainnya'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kamar' | '/keuangan'
-  id: '__root__' | '/' | '/kamar' | '/keuangan'
+  to: '/' | '/aset' | '/kamar' | '/keuangan' | '/lainnya'
+  id: '__root__' | '/' | '/aset' | '/kamar' | '/keuangan' | '/lainnya'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AsetRoute: typeof AsetRoute
   KamarRoute: typeof KamarRoute
   KeuanganRoute: typeof KeuanganRoute
+  LainnyaRoute: typeof LainnyaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aset': {
+      id: '/aset'
+      path: '/aset'
+      fullPath: '/aset'
+      preLoaderRoute: typeof AsetRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kamar': {
@@ -82,13 +109,22 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KeuanganRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lainnya': {
+      id: '/lainnya'
+      path: '/lainnya'
+      fullPath: '/lainnya'
+      preLoaderRoute: typeof LainnyaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AsetRoute: AsetRoute,
   KamarRoute: KamarRoute,
   KeuanganRoute: KeuanganRoute,
+  LainnyaRoute: LainnyaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
