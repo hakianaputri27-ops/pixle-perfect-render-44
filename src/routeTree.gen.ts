@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as KamarRouteImport } from './routes/kamar'
+import { Route as KeuanganRouteImport } from './routes/keuangan'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KamarRoute = KamarRouteImport.update({
+  id: '/kamar',
+  path: '/kamar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeuanganRoute = KeuanganRouteImport.update({
+  id: '/keuangan',
+  path: '/keuangan',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/kamar': typeof KamarRoute
+  '/keuangan': typeof KeuanganRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/kamar': typeof KamarRoute
+  '/keuangan': typeof KeuanganRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/kamar': typeof KamarRoute
+  '/keuangan': typeof KeuanganRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/kamar' | '/keuangan'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/kamar' | '/keuangan'
+  id: '__root__' | '/' | '/kamar' | '/keuangan'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  KamarRoute: typeof KamarRoute
+  KeuanganRoute: typeof KeuanganRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kamar': {
+      id: '/kamar'
+      path: '/kamar'
+      fullPath: '/kamar'
+      preLoaderRoute: typeof KamarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keuangan': {
+      id: '/keuangan'
+      path: '/keuangan'
+      fullPath: '/keuangan'
+      preLoaderRoute: typeof KeuanganRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  KamarRoute: KamarRoute,
+  KeuanganRoute: KeuanganRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
