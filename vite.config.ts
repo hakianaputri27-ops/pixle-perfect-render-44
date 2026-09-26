@@ -12,4 +12,15 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Kunci lokasi hasil build ke dist/ supaya sama di semua komputer (Windows/Mac/Linux),
+  // sehingga scripts/generate-index.mjs dan Capacitor selalu menemukan berkasnya.
+  nitro: {
+    preset: "cloudflare-module",
+    output: {
+      dir: "dist",
+      serverDir: "dist/server",
+      publicDir: "dist/client",
+    },
+    cloudflare: { nodeCompat: true, deployConfig: true },
+  },
 });
