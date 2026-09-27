@@ -24,6 +24,8 @@ export const Route = createFileRoute("/kamar")({
       { name: "description", content: "Kelola data kamar, status hunian, dan penghuni kost Anda." },
       { property: "og:title", content: "Kamar & Penghuni — Kelola Kost" },
       { property: "og:description", content: "Tambah, ubah, dan hapus kamar serta penghuni." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: KamarPage,

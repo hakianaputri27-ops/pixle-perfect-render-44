@@ -25,6 +25,8 @@ export const Route = createFileRoute("/keuangan")({
       { name: "description", content: "Catat pemasukan sewa, pengeluaran, dan lihat laporan laba bulanan." },
       { property: "og:title", content: "Keuangan — Kelola Kost" },
       { property: "og:description", content: "Pemasukan, pengeluaran, dan laporan kost." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: KeuanganPage,

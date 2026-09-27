@@ -13,6 +13,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Ringkasan hunian, pemasukan, pengeluaran, dan laba kost bulan ini." },
       { property: "og:title", content: "Dashboard — Kelola Kost" },
       { property: "og:description", content: "Ringkasan hunian dan keuangan kost Anda." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Dashboard,

@@ -1,13 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { DoorOpen, House, Package, Settings2, Wallet } from "lucide-react";
 import { useActiveData, useStore } from "@/lib/store";
 
 const NAV = [
-  { to: "/", label: "Dashboard", icon: "🏠" },
-  { to: "/kamar", label: "Kamar", icon: "🚪" },
-  { to: "/keuangan", label: "Keuangan", icon: "💰" },
-  { to: "/aset", label: "Aset", icon: "📦" },
-  { to: "/lainnya", label: "Lainnya", icon: "⚙️" },
+  { to: "/", label: "Dashboard", icon: House },
+  { to: "/kamar", label: "Kamar", icon: DoorOpen },
+  { to: "/keuangan", label: "Keuangan", icon: Wallet },
+  { to: "/aset", label: "Aset", icon: Package },
+  { to: "/lainnya", label: "Lainnya", icon: Settings2 },
 ] as const;
 
 export function AppShell({
@@ -49,7 +50,7 @@ export function AppShell({
               activeOptions={{ exact: item.to === "/" }}
               className="flex min-w-0 flex-1 flex-col items-center gap-0.5 py-2.5 text-[11px] font-medium text-muted-foreground data-[status=active]:text-primary"
             >
-              <span className="text-lg leading-none">{item.icon}</span>
+              <item.icon aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2} />
               <span className="truncate">{item.label}</span>
             </Link>
           ))}
